@@ -1,3 +1,7 @@
+
+#include "push_swap.h"
+
+
 int *initialisation(t_list_swap *liste)
 {
     t_elem_list *elem;
