@@ -1,4 +1,4 @@
-SRCS    = main.c\
+SRCS    = main.c sort_operation.c list_crea.c
 
 		  
 HEADER  = push_swap.h

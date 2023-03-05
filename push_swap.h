@@ -41,6 +41,7 @@ typedef struct s_elem_list
 typedef struct s_list_swap
 {
     t_elem_list *first;
+	t_elem_list *end;
 } t_list_swap;
 
 
@@ -73,7 +74,15 @@ struct Liste
 	int			check_border;
 }	t_param;*/
 
-int check_list(char **list);
+int check_list(int argc, char **list);
 int isnumber(char *list);
+int afficherListe(t_list_swap *liste);
+t_list_swap *affect_list(char **str, int len);
+int initialisation(t_list_swap **liste,int first_nb);
+int insert(t_list_swap *liste, int nb);
+int delete_first(t_list_swap *liste);
+int delete_elem(t_list_swap *liste, int rnk);
+int insert_elem(t_list_swap *liste, int nb, int rnk);
+
 
 #endif

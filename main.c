@@ -17,20 +17,35 @@
 
 int	main(int argc, char **argv)
 {
-	int	len;
+	//int	len;
+	t_list_swap *input;
+	t_list_swap *input2;
 
-	len = argc - 1;
-	if (check_list(argv) == 0)
+	//len = argc - 1;
+	//printf("Checl list : %d\n",check_list(argc, argv));
+	if (check_list(argc, argv) == 0)
 		return(1);
+	input = affect_list(argv, argc - 1);
+	input2 = affect_list(argv, argc - 1);
+	swap_a(input2, NULL);
+	afficherListe(input);
+	afficherListe(input2);
+	push_a(input, input2);
+	afficherListe(input);
+	rot_a(input, NULL);
+	afficherListe(input);
+
 	return (0);
 }
 
-int check_list(char **list)
+int check_list(int argc, char **list)
 {
 	int	i;
 	int	j;
 
 	i  = 1;
+	if (argc < 2)
+		return (0);
 	while (list[i])
 	{
 		j = i + 1;
