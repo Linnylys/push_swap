@@ -37,7 +37,7 @@ int	main(int argc, char **argv)
 	printf("liste original \n");
 	
 	printf("Rotation liste original \n");
-	rot_b(input,input_rot);
+	rot_a(input_rot,NULL);
 	afficherListe(input_rot);
 
 	

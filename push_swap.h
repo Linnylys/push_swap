@@ -85,8 +85,13 @@ int delete_first(t_list_swap *liste);
 int delete_elem(t_list_swap *liste, int rnk);
 int insert_elem(t_list_swap *liste, int nb, int rnk);
 int FreeListe(t_list_swap *liste);
+void swap_a(t_list_swap *a, t_list_swap *b);
+void rot_a(t_list_swap *a, t_list_swap *b);
+void rot_ra(t_list_swap *a, t_list_swap *b);
+void push_a(t_list_swap *a, t_list_swap *b);
 void swap_b(t_list_swap *a, t_list_swap *b);
 void rot_b(t_list_swap *a, t_list_swap *b);
+void rot_rb(t_list_swap *a, t_list_swap *b);
 void push_b(t_list_swap *a, t_list_swap *b);
 
 

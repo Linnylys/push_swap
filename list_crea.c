@@ -202,7 +202,7 @@ int FreeListe(t_list_swap *liste)
         free(current);
         current = tmp;
     }
-    printf("NULL\n");
+    //printf("NULL\n");
     free(liste);
     return (0);
 }

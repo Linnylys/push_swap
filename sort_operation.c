@@ -45,7 +45,7 @@ void push_b(t_list_swap *a, t_list_swap *b)
     push_a(b, a);
 }
 
-void rot_a(t_list_swap *a, t_list_swap *b)
+void rot_ra(t_list_swap *a, t_list_swap *b)
 {
     t_elem_list *elem;
     t_elem_list *tmp;
@@ -68,7 +68,46 @@ void rot_a(t_list_swap *a, t_list_swap *b)
     }
 }
 
+void rot_rb(t_list_swap *a, t_list_swap *b)
+{
+    rot_ra(b, a);
+}
+
+void rot_rrr(t_list_swap *a, t_list_swap *b)
+{
+    rot_ra(a, NULL);
+    rot_ra(b, NULL);
+}
+
+void rot_a(t_list_swap *a, t_list_swap *b)
+{
+    t_elem_list *elem;
+    t_elem_list *tmp;
+    (void) *b;
+
+    elem = malloc(sizeof(*elem));
+    if (a && a->first != NULL)
+    {
+        elem->nb = a->first->nb;
+        elem->down = NULL;
+        elem->up = a->end;
+        a->end->down = elem;
+        a->end = elem;
+        a->first->down->up = NULL;
+        tmp = a->first->down;
+        if (a->first)
+            free(a->first);
+        a->first = tmp;
+    }
+}
+
 void rot_b(t_list_swap *a, t_list_swap *b)
 {
     rot_a(b, a);
+}
+
+void rot_rr(t_list_swap *a, t_list_swap *b)
+{
+    rot_a(a, NULL);
+    rot_a(b, NULL);
 }
