@@ -13,7 +13,7 @@ RM      = rm -f
 LIB = libft.a 
 CFLAGS = -I./libft
 
-CFLAGS1 = -L./libft -lft -g3
+CFLAGS1 = -Wall -Wextra -Werror -L./libft -lft -g3
 #CFLAGS1 = -Wall -Wextra -Werror -L../Libft -lft -g3
 #CFLAGS1 = -Wall -Wextra -Werror -L../minilibx-linux -lmlx_Linux -lmlx  -lXext -lX11 -lm -g3 -fsanitize=address
 

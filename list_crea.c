@@ -193,13 +193,14 @@ int FreeListe(t_list_swap *liste)
         return (0);
 
     t_elem_list *current;
+    t_elem_list *tmp;
 
     current = liste->first;
     while (current != NULL)
     {
-        //printf("elem freeing -> %d\n ", current->nb);
+        tmp = current->down;
         free(current);
-        current = current->down;
+        current = tmp;
     }
     printf("NULL\n");
     free(liste);

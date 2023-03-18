@@ -29,12 +29,14 @@ void swap_ss(t_list_swap *a, t_list_swap *b)
 
 void push_a(t_list_swap *a, t_list_swap *b)
 {
+    t_elem_list *tmp;
 
     if (a && b && b ->first != NULL)
     {
         insert(a,b->first->nb);
+        tmp = b->first->down;
         free(b->first);
-        b->first = b->first->down;
+        b->first = tmp;
     }
 }
 
@@ -46,7 +48,7 @@ void push_b(t_list_swap *a, t_list_swap *b)
 void rot_a(t_list_swap *a, t_list_swap *b)
 {
     t_elem_list *elem;
-    t_elem_list *elem2;
+    t_elem_list *tmp;
     (void) *b;
 
     elem = malloc(sizeof(*elem));
@@ -58,9 +60,10 @@ void rot_a(t_list_swap *a, t_list_swap *b)
         elem->down = a->first;
         elem->up = NULL;
         a->end->up->down = NULL;
+        tmp = a->end->up;
         if (a->end)
-            free(a->end );
-        a->end = a->end->up;
+            free(a->end);
+        a->end = tmp;
         a->first = elem;
     }
 }

@@ -29,16 +29,18 @@ int	main(int argc, char **argv)
 		return(1);
 	input = affect_list(argv, argc - 1);
 	input_rot = affect_list(argv, argc - 1);
-	//input_swap = affect_list(argv, argc - 1);
-	//input_push = affect_list(argv, argc - 1);
+	input_swap = affect_list(argv, argc - 1);
+	input_push = affect_list(argv, argc - 1);
 	
-	printf("liste original \n");
+	
 	afficherListe(input);
+	printf("liste original \n");
+	
 	printf("Rotation liste original \n");
 	rot_b(input,input_rot);
 	afficherListe(input_rot);
 
-	/*
+	
 	swap_b(input,input_swap);
 	printf("liste swapped \n");
 	afficherListe(input_swap);
@@ -47,18 +49,20 @@ int	main(int argc, char **argv)
 	printf("liste original pushed list swapped \n");
 	afficherListe(input);
 	afficherListe(input_push);
-	*/
+	
 
-	printf("liste original freeing \n");
+	
 	FreeListe(input);
+	printf("liste original freeing \n");
+	
 	printf("Rotation liste original freeing\n");
 	FreeListe(input_rot);
-	/*
+	
 	printf("liste swapped freeing\n");
 	FreeListe(input_swap);
 	printf("liste original pushed list swapped freeing \n");
 	FreeListe(input_push);
-	*/
+	
 
 	return (0);
 }
