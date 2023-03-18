@@ -19,21 +19,46 @@ int	main(int argc, char **argv)
 {
 	//int	len;
 	t_list_swap *input;
-	t_list_swap *input2;
+	t_list_swap *input_rot;
+	t_list_swap *input_swap;
+	t_list_swap *input_push;
 
 	//len = argc - 1;
 	//printf("Checl list : %d\n",check_list(argc, argv));
 	if (check_list(argc, argv) == 0)
 		return(1);
 	input = affect_list(argv, argc - 1);
-	input2 = affect_list(argv, argc - 1);
-	swap_a(input2, NULL);
+	input_rot = affect_list(argv, argc - 1);
+	//input_swap = affect_list(argv, argc - 1);
+	//input_push = affect_list(argv, argc - 1);
+	
+	printf("liste original \n");
 	afficherListe(input);
-	afficherListe(input2);
-	push_a(input, input2);
+	printf("Rotation liste original \n");
+	rot_b(input,input_rot);
+	afficherListe(input_rot);
+
+	/*
+	swap_b(input,input_swap);
+	printf("liste swapped \n");
+	afficherListe(input_swap);
+
+	push_b(input, input_push);
+	printf("liste original pushed list swapped \n");
 	afficherListe(input);
-	rot_a(input, NULL);
-	afficherListe(input);
+	afficherListe(input_push);
+	*/
+
+	printf("liste original freeing \n");
+	FreeListe(input);
+	printf("Rotation liste original freeing\n");
+	FreeListe(input_rot);
+	/*
+	printf("liste swapped freeing\n");
+	FreeListe(input_swap);
+	printf("liste original pushed list swapped freeing \n");
+	FreeListe(input_push);
+	*/
 
 	return (0);
 }

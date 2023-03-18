@@ -79,10 +79,15 @@ int isnumber(char *list);
 int afficherListe(t_list_swap *liste);
 t_list_swap *affect_list(char **str, int len);
 int initialisation(t_list_swap **liste,int first_nb);
+int initialisation2(t_list_swap **liste,int first_nb1,int first_nb2);
 int insert(t_list_swap *liste, int nb);
 int delete_first(t_list_swap *liste);
 int delete_elem(t_list_swap *liste, int rnk);
 int insert_elem(t_list_swap *liste, int nb, int rnk);
+int FreeListe(t_list_swap *liste);
+void swap_b(t_list_swap *a, t_list_swap *b);
+void rot_b(t_list_swap *a, t_list_swap *b);
+void push_b(t_list_swap *a, t_list_swap *b);
 
 
 #endif

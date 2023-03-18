@@ -23,20 +23,18 @@ void swap_b(t_list_swap *a, t_list_swap *b)
 
 void swap_ss(t_list_swap *a, t_list_swap *b)
 {
-    swap_a(a, b);
-    swap_b(a, b);
+    swap_a(a, NULL);
+    swap_a(b, NULL);
 }
 
 void push_a(t_list_swap *a, t_list_swap *b)
 {
-    t_elem_list *elem;
 
     if (a && b && b ->first != NULL)
     {
-        elem = b->first;
-        elem->down = a->first;
-        elem->up = NULL;
-        a->first = elem; 
+        insert(a,b->first->nb);
+        free(b->first);
+        b->first = b->first->down;
     }
 }
 
@@ -47,36 +45,27 @@ void push_b(t_list_swap *a, t_list_swap *b)
 
 void rot_a(t_list_swap *a, t_list_swap *b)
 {
-    t_elem_list *elem1;
+    t_elem_list *elem;
     t_elem_list *elem2;
     (void) *b;
 
-    //elem = malloc(sizeof(*elem));
+    elem = malloc(sizeof(*elem));
     //if (elem == NULL)
     //    return (0);
     if (a && a->first != NULL)
     {
-        elem1 = a->end;
-        elem2 = a ->end->up;
-
-        elem1->down = a->first;
-        elem1->up = NULL;
-        printf("valeur end: %d\n",a->end->nb );
-
-        //a->first->up = elem;
-
+        elem->nb = a->end->nb;
+        elem->down = a->first;
+        elem->up = NULL;
+        a->end->up->down = NULL;
+        if (a->end)
+            free(a->end );
+        a->end = a->end->up;
+        a->first = elem;
     }
 }
 
-/*void rot_a(t_list_swap *a, t_list_swap *b)
+void rot_b(t_list_swap *a, t_list_swap *b)
 {
-    t_elem_list *elem;
-
-    if (a && b && b ->first != NULL)
-    {
-        elem = a->first;
-        elem->down = a->first;
-        elem->up = NULL;
-        a->first = elem; 
-    }
-}*/
+    rot_a(b, a);
+}
