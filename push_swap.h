@@ -93,6 +93,6 @@ void swap_b(t_list_swap *a, t_list_swap *b);
 void rot_b(t_list_swap *a, t_list_swap *b);
 void rot_rb(t_list_swap *a, t_list_swap *b);
 void push_b(t_list_swap *a, t_list_swap *b);
-
+int is_already_sorted(t_list_swap *a);
 
 #endif

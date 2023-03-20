@@ -17,7 +17,64 @@
 
 int	main(int argc, char **argv)
 {
-	//int	len;
+	t_list_swap *input;
+	int	flag;
+	input = affect_list(argv, argc - 1);
+
+	//test_operation(argc,argv);
+	
+	flag = is_already_sorted(input);
+	printf("check_sorted: %d\n",flag);
+	if ( flag == 1)
+		return(0);
+	
+	
+
+	afficherListe(input);
+	return (0);
+}
+
+int check_list(int argc, char **list)
+{
+	int	i;
+	int	j;
+
+	i  = 1;
+	if (argc < 2)
+		return (0);
+	while (list[i])
+	{
+		j = i + 1;
+		while (list[j])
+		{
+			if (isnumber(list[i]) == 0 && isnumber(list[j]) == 0)
+				return (0);
+			if (atoi(list[i]) == atoi(list[j]))
+				return (0);
+			j++;
+		}
+		i++;
+	}
+	return (1);
+}
+
+int isnumber(char *list) 
+{
+	int	i;
+
+	i = 0;
+	while(list[i])
+	{
+		if (isalnum(list[i]) == 1)
+		return (0);
+		i++;
+	}
+	return (1);
+}
+
+int test_operation(int argc, char **argv)
+{
+
 	t_list_swap *input;
 	t_list_swap *input_rot;
 	t_list_swap *input_swap;
@@ -62,45 +119,5 @@ int	main(int argc, char **argv)
 	FreeListe(input_swap);
 	printf("liste original pushed list swapped freeing \n");
 	FreeListe(input_push);
-	
 
-	return (0);
-}
-
-int check_list(int argc, char **list)
-{
-	int	i;
-	int	j;
-
-	i  = 1;
-	if (argc < 2)
-		return (0);
-	while (list[i])
-	{
-		j = i + 1;
-		while (list[j])
-		{
-			if (isnumber(list[i]) == 0 && isnumber(list[j]) == 0)
-				return (0);
-			if (atoi(list[i]) == atoi(list[j]))
-				return (0);
-			j++;
-		}
-		i++;
-	}
-	return (1);
-}
-
-int isnumber(char *list) 
-{
-	int	i;
-
-	i = 0;
-	while(list[i])
-	{
-		if (isalnum(list[i]) == 1)
-		return (0);
-		i++;
-	}
-	return (1);
 }

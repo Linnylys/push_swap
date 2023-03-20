@@ -111,3 +111,30 @@ void rot_rr(t_list_swap *a, t_list_swap *b)
     rot_a(a, NULL);
     rot_a(b, NULL);
 }
+
+char    *write_and_operation (t_list_swap *a, t_list_swap *b, char *str)
+{
+    if (ft_strcmp(str,"sa") == 0)
+        swap_a(a,b);
+    else if (ft_strcmp(str,"sb") == 0)
+        swap_b(a,b);
+    else if (ft_strcmp(str,"ss") == 0)
+        swap_ss(a,b);
+    else if (ft_strcmp(str,"pa") == 0)
+        push_a(a,b);
+    else if (ft_strcmp(str,"pb") == 0)
+        push_b(a,b);
+    else if (ft_strcmp(str,"ra") == 0)
+        rot_a(a,b);
+    else if (ft_strcmp(str,"rb") == 0)
+        rot_b(a,b);
+    else if (ft_strcmp(str,"rra") == 0)
+        rot_ra(a,b);
+    else if (ft_strcmp(str,"rrb") == 0)
+        rot_rb(a,b);
+    else if (ft_strcmp(str,"rr") == 0)
+        rot_rr(a,b);
+    else if (ft_strcmp(str,"rrr") == 0)
+        rot_rrr(a,b);
+    ft_putstr(str);
+}
