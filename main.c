@@ -18,18 +18,17 @@
 int	main(int argc, char **argv)
 {
 	t_list_swap *input;
-	int	flag;
+	t_list_swap *inputbis;
+	int	count;
 	input = affect_list(argv, argc - 1);
 
 	//test_operation(argc,argv);
 	
-	flag = is_already_sorted(input);
-	printf("check_sorted: %d\n",flag);
-	if ( flag == 1)
+	count = count_and_is_already_sorted(input);
+	printf("check_sorted: %d\n",count);
+	if ( count == 0)
 		return(0);
-	
-	
-
+	small_input_sorting(input,inputbis,count);
 	afficherListe(input);
 	return (0);
 }
