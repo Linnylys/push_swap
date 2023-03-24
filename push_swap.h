@@ -94,5 +94,14 @@ void rot_b(t_list_swap *a, t_list_swap *b);
 void rot_rb(t_list_swap *a, t_list_swap *b);
 void push_b(t_list_swap *a, t_list_swap *b);
 int is_already_sorted(t_list_swap *a);
+char *sort_three_elem(t_list_swap *a, t_list_swap *b);
+char    *sort_two_elem(t_list_swap *a, t_list_swap *b);
+char *small_input_sorting(t_list_swap *a,t_list_swap *b, int len);
+int elem_max_pos(t_list_swap *a);
+int count_and_is_already_sorted(t_list_swap *a);
+int	ft_strcmp(char *sa,char *sb);
+void	ft_putstr(char *s);
+char    *delete_and_return(t_list_swap *a);
+char	*convert_bin(int nb);
 
 #endif

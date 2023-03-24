@@ -172,6 +172,8 @@ int insert_elem(t_list_swap *liste, int nb, int rnk)
 
 int afficherListe(t_list_swap *liste)
 {
+    if (!liste)
+      {  
     if (liste == NULL)
         return (0);
 
@@ -185,6 +187,9 @@ int afficherListe(t_list_swap *liste)
     }
     printf("NULL\n");
     return (0);
+      }
+    else
+        return (-1);
 }
 
 int FreeListe(t_list_swap *liste)

@@ -114,6 +114,8 @@ void rot_rr(t_list_swap *a, t_list_swap *b)
 
 char    *write_and_operation (t_list_swap *a, t_list_swap *b, char *str)
 {
+    char    *res;
+
     if (ft_strcmp(str,"sa") == 0)
         swap_a(a,b);
     else if (ft_strcmp(str,"sb") == 0)
@@ -136,5 +138,7 @@ char    *write_and_operation (t_list_swap *a, t_list_swap *b, char *str)
         rot_rr(a,b);
     else if (ft_strcmp(str,"rrr") == 0)
         rot_rrr(a,b);
-    ft_putstr(str);
+
+    res = ft_strjoin(str, "\n");
+    return (res);
 }
