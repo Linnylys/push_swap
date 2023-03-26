@@ -105,5 +105,6 @@ void	ft_putstr(char *s);
 char    *delete_and_return(t_list_swap *a);
 char	*convert_bin(int nb);
 char    *write_and_operation (t_list_swap *a, t_list_swap *b, char *str);
+int 	initialisation_bis(t_list_swap **pliste,int first_nb);
 
 #endif
