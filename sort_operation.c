@@ -57,6 +57,7 @@ void rot_ra(t_list_swap *a, t_list_swap *b)
     if (a && a->first != NULL)
     {
         elem->nb = a->end->nb;
+        elem->bin = a->end->bin;
         elem->down = a->first;
         elem->up = NULL;
         a->end->up->down = NULL;
@@ -89,6 +90,7 @@ void rot_a(t_list_swap *a, t_list_swap *b)
     if (a && a->first != NULL)
     {
         elem->nb = a->first->nb;
+        elem->bin = a->first->bin;
         elem->down = NULL;
         elem->up = a->end;
         a->end->down = elem;
@@ -117,7 +119,9 @@ char    *write_and_operation (t_list_swap *a, t_list_swap *b, char *str)
     char    *res;
 
     if (ft_strcmp(str,"sa") == 0)
+    {
         swap_a(a,b);
+    }
     else if (ft_strcmp(str,"sb") == 0)
         swap_b(a,b);
     else if (ft_strcmp(str,"ss") == 0)
@@ -127,7 +131,9 @@ char    *write_and_operation (t_list_swap *a, t_list_swap *b, char *str)
     else if (ft_strcmp(str,"pb") == 0)
         push_b(a,b);
     else if (ft_strcmp(str,"ra") == 0)
+    {
         rot_a(a,b);
+    }
     else if (ft_strcmp(str,"rb") == 0)
         rot_b(a,b);
     else if (ft_strcmp(str,"rra") == 0)

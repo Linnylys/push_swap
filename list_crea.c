@@ -53,6 +53,7 @@ int initialisation(t_list_swap **pliste,int first_nb)
     if (liste == NULL || elem == NULL)
         return (0);
     elem->nb= first_nb;
+    elem->bin = convert_bin(elem->nb);
     elem->up = NULL;
     elem->down = NULL;
     liste->first = elem;
@@ -74,6 +75,8 @@ int initialisation2(t_list_swap **pliste,int first_nb1,int first_nb2)
         return (0);
     elem1->nb= first_nb1;
     elem2->nb= first_nb2;
+    elem1->bin = convert_bin(elem1->nb);
+    elem2->bin = convert_bin(elem2->nb);
     elem1->up = NULL;
     elem1->down = elem2;
 
@@ -94,6 +97,7 @@ int insert(t_list_swap *liste, int nb)
     if (liste == NULL || new == NULL)
         return (0);
     new->nb = nb;
+    new->bin = convert_bin(new->nb);
     new->up = NULL;
     new->down = liste->first;
     liste->first = new;
@@ -108,6 +112,7 @@ int first_insert(t_list_swap *liste, int nb)
     if (liste == NULL || new == NULL)
         return (0);
     new->nb = nb;
+    new->bin = convert_bin(new->nb);
     new->up = NULL;
     new->down = liste->first;
     liste->end->up = liste->first;
@@ -125,6 +130,7 @@ int delete_first(t_list_swap *liste)
         t_elem_list *todelete;
         todelete = liste->first;
         liste->first = liste->first->down;
+        free(todelete->bin);
         free(todelete);
     }
      return (0);
@@ -144,6 +150,7 @@ int delete_elem(t_list_swap *liste, int rnk)
         todelete = todelete->down;
     todelete->up->down = todelete->down;
     todelete->down->up = todelete->up;
+    free(todelete->bin);
     free(todelete);
     return (0);
 }
@@ -172,7 +179,29 @@ int insert_elem(t_list_swap *liste, int nb, int rnk)
 
 int afficherListe(t_list_swap *liste)
 {
-    if (!liste)
+    if (liste)
+      {  
+    if (liste == NULL)
+        return (0);
+
+    t_elem_list *current;
+    
+    current = liste->first;
+    while (current != NULL)
+    {
+        printf("%d -> ", current->nb);
+        current = current->down;
+    }
+    printf("NULL\n");
+    return (0);
+      }
+    else
+        return (-1);
+}
+
+int afficherListe_bin(t_list_swap *liste)
+{
+    if (liste)
       {  
     if (liste == NULL)
         return (0);
@@ -182,7 +211,7 @@ int afficherListe(t_list_swap *liste)
     current = liste->first;
     while (current != NULL)
     {
-        printf("%d -> ", current->nb);
+        printf("%s -> ", current->bin);
         current = current->down;
     }
     printf("NULL\n");
@@ -204,6 +233,7 @@ int FreeListe(t_list_swap *liste)
     while (current != NULL)
     {
         tmp = current->down;
+        free(current->bin);
         free(current);
         current = tmp;
     }

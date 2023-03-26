@@ -120,7 +120,7 @@ char *sort_three_elem(t_list_swap *a, t_list_swap *b)
     t_elem_list *current;
     char    *res;
     int flag;
-
+    
     if (elem_max_pos(a) == 1)
     {
         if (a->first->down->nb > a->end->nb)
@@ -132,10 +132,14 @@ char *sort_three_elem(t_list_swap *a, t_list_swap *b)
     }
     else if (elem_max_pos(a) == 2)
     {
+        
         if (a->first->nb > a->end->nb)
             res = ft_strjoin(write_and_operation (a, b,"ra"),write_and_operation (a, b,"ra"));
         else if (a->first->nb < a->end->nb)
-            res = ft_strjoin(write_and_operation (a, b,"sa"),write_and_operation (a, b,"ra"));
+        {
+            //res = ft_strjoin(write_and_operation (a, b,"sa"),write_and_operation (a, b,"ra"));
+            res = ft_strjoin(write_and_operation (a, b,"ra"),write_and_operation (a, b,"sa"));
+        }
         else
          return(delete_and_return(a));
     }

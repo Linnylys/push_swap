@@ -11,15 +11,15 @@ char	*convert_bin(int nb)
     len = 1;
     grid = "01";
     q = nb;
-    printf("div : %d\n",q/ 2);
+    //printf("div : %d\n",q/ 2);
     while (q/ 2 != 0)
     {
-        printf("div loop: %d\n",q/ 2);
+       // printf("div loop: %d\n",q/ 2);
         q =  q /2;
         len ++;
     }
     res = malloc(len);
-    printf("len : %d\n",len);
+    //printf("len : %d\n",len);
     if (res == NULL)
         return (NULL);
     q = nb;

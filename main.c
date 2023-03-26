@@ -17,25 +17,29 @@
 
 int	main(int argc, char **argv)
 {
-   printf("conversion bin : %s\n",convert_bin(0));
+   //printf("conversion bin : %s\n",convert_bin(21474));
 
-	/*
+	
 	t_list_swap *input;
 	t_list_swap *inputbis;
 	int	count;
-	int res1;
+	char *res1;
 	input = affect_list(argv, argc - 1);
 
-	//test_operation(argc,argv);
 	afficherListe(input);
+	afficherListe_bin(input);
+	
+	//test_operation(argc,argv);
+	//afficherListe(input);
 	count = count_and_is_already_sorted(input);
 	printf("check_sorted: %d\n",count);
 	if ( count == 0)
 		return(0);
 	res1 = small_input_sorting(input,inputbis,count);
-	printf("Resultat:\n%s",res1);
+	printf("Resultat:\n%s \n",res1);
 
-	afficherListe(input);*/
+	afficherListe(input);
+	afficherListe_bin(input);
 	return (0);
 }
 

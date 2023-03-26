@@ -34,6 +34,7 @@
 typedef struct s_elem_list
 {
 	int				nb;
+	char			*bin;
 	struct s_elem_list	*up;
 	struct s_elem_list	*down;
 }	t_elem_list;
@@ -103,5 +104,6 @@ int	ft_strcmp(char *sa,char *sb);
 void	ft_putstr(char *s);
 char    *delete_and_return(t_list_swap *a);
 char	*convert_bin(int nb);
+char    *write_and_operation (t_list_swap *a, t_list_swap *b, char *str);
 
 #endif
