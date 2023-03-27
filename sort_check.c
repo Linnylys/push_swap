@@ -164,3 +164,81 @@ char    *delete_and_return(t_list_swap *a)
     //a = NULL;
     return(NULL);
 }
+
+int max_input_digit(t_list_swap *a)
+{
+    t_elem_list *current;
+    int max;
+    int max_bin_size;
+
+    if (a && a->first != NULL)
+    {
+        current = a->first;
+        max  = current->nb;
+        max_bin_size  = ft_strlen(current->bin);
+        while(current != NULL)
+        {
+            if (current->nb > max)
+            {
+                max = current->nb;
+                max_bin_size = ft_strlen(current->bin);
+            }
+            current = current->down; 
+        }
+    }
+    return (max_bin_size);
+}
+
+char *sort_radix(t_list_swap *a)
+{
+    int max_bin_size;
+    t_elem_list *current;
+    t_list_swap *list_b;
+    //t_elem_list *pivot;
+    char    digit;
+    char    res;
+    t_elem_list tmp[2];
+    int flag;
+
+    flag = 0;
+    res = NULL;
+
+    max_bin_size = max_input_digit(a);
+    while (max_bin_size != 0)
+    {
+        current = a->first;
+        //pivot = a->first;
+        while (current != NULL)
+        {
+            printf("current nb : %d\n",current->nb);
+            
+            if (a->first->bin[max_bin_size] == 0)
+            {
+                if (flag == 1)
+                {
+                    write_and_operation (a, b, "ra");
+                    flag = 0;
+                }
+                else
+                    write_and_operation (a, b, "pb");
+
+                current = a->first;
+            }
+            else
+            {
+                if (flag == 0)
+                    {
+                        //pivot = current;
+                        flag = 1;
+                    }
+            }  
+            current = current->down;
+            printf("First AFTER nb : %d\n",a->first->nb);
+            printf("current AFTER nb : %d\n",current->nb);
+            if (b->first != NULL)
+                printf("current nb : %d\n",b->first->nb);
+        }
+        max_bin_size --;
+    }
+    return (res);
+}
