@@ -2,7 +2,7 @@
 #include "push_swap.h"
 #include <stdio.h>
 
-t_list_swap *affect_list(char **str, int len)
+/*t_list_swap *affect_list_old(char **str, int len)
 {
     int i;
     int tmp;
@@ -11,36 +11,16 @@ t_list_swap *affect_list(char **str, int len)
 
     i = len - 2;
     flag = 1;
-    /*initialisation(&res,ft_atoi(str[len]));
+
+    initialisation_old1(&res,ft_atoi(str[len - 1]),ft_atoi(str[len]));
     while (i > 0)
     {
-        //afficherListe(res);
         tmp = ft_atoi(str[i]);
-        //printf("tmp: %s - %d\n",str[i],tmp);
-        if (flag == 1)
-        {
-            first_insert(res,tmp);
-            flag = 0;
-        }
-        else
-            insert(res,tmp);
-        //afficherListe(res);
-        //insert_elem(res, tmp, i);
-        i--;
-    }*/
-    initialisation2(&res,ft_atoi(str[len - 1]),ft_atoi(str[len]));
-    while (i > 0)
-    {
-        //afficherListe(res);
-        tmp = ft_atoi(str[i]);
-        //printf("tmp: %s - %d\n",str[i],tmp);
         insert(res,tmp);
-        //afficherListe(res);
-        //insert_elem(res, tmp, i);
         i--;
     }
     return (res);
-}
+}*/
 
 int initialisation(t_list_swap **pliste,int first_nb)
 {
@@ -61,35 +41,72 @@ int initialisation(t_list_swap **pliste,int first_nb)
     *pliste =liste;
     return (1);
 }
-int initialisation2(t_list_swap **pliste,int first_nb1,int first_nb2)
+
+int insert(t_list_swap *liste, int nb)
+{
+    t_elem_list *new;
+
+    new = malloc(sizeof(*new));
+    if (liste == NULL || new == NULL)
+        return (0);
+    new->nb = nb;
+    new->bin = convert_bin(new->nb);
+    new->up = NULL;
+    new->down = liste->first;
+    if (liste->first->down == NULL)
+    {
+        liste->end->up = new;
+    }
+    liste->first = new;
+    return (0);
+}
+
+t_list_swap *affect_list(char **str, int len)
+{
+    int i;
+    int tmp;
+    int flag;
+    t_list_swap *res;
+
+    i = len - 1;
+    flag = 1;
+
+    initialisation(&res,ft_atoi(str[len]));
+    while (i > 0)
+    {
+        //afficherListe(res);
+        tmp = ft_atoi(str[i]);
+        //printf("tmp: %s - %d\n",str[i],tmp);
+        insert(res,tmp);
+        //afficherListe(res);
+        //insert_elem(res, tmp, i);
+        i--;
+    }
+    return (res);
+}
+int initialisation_old1(t_list_swap **pliste,int first_nb)
 {
     t_list_swap *liste;
-    t_elem_list *elem1;
-    t_elem_list *elem2;
+    t_elem_list *elem;
     //t_elem_list *elem_end;
 
     liste = malloc(sizeof(*liste));
-    elem1 = malloc(sizeof(*elem1));
-    elem2 = malloc(sizeof(*elem2));
-    if (liste == NULL || elem1 == NULL || elem2 == NULL)
+    elem = malloc(sizeof(*elem));
+    if (liste == NULL || elem == NULL)
         return (0);
-    elem1->nb= first_nb1;
-    elem2->nb= first_nb2;
-    elem1->bin = convert_bin(elem1->nb);
-    elem2->bin = convert_bin(elem2->nb);
-    elem1->up = NULL;
-    elem1->down = elem2;
-
-    elem2->up = elem1;
-    elem2->down = NULL;
-    
-    liste->first = elem1;
-    liste->end = elem2;
+    elem->nb= first_nb;
+    elem->bin = convert_bin(elem->nb);
+    elem->up = NULL;
+    elem->down = NULL;
+    liste->first = elem;
+    liste->end = elem;
     *pliste =liste;
     return (1);
 }
 
-int insert(t_list_swap *liste, int nb)
+
+
+int insert_old(t_list_swap *liste, int nb)
 {
     t_elem_list *new;
 

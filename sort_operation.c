@@ -148,3 +148,4 @@ char    *write_and_operation (t_list_swap *a, t_list_swap *b, char *str)
     res = ft_strjoin(str, "\n");
     return (res);
 }
+

@@ -25,11 +25,14 @@ int	main(int argc, char **argv)
 	int	count;
 	char *res1;
 	input = affect_list(argv, argc - 1);
-
+	//test_operation(argc,argv);
 	afficherListe(input);
 	afficherListe_bin(input);
+
+	res1 = sort_radix(input);
+	printf("Resultat:\n%s \n",res1);
+	return(0);
 	
-	//test_operation(argc,argv);
 	//afficherListe(input);
 	count = count_and_is_already_sorted(input);
 	printf("check_sorted: %d\n",count);
