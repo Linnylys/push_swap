@@ -193,12 +193,12 @@ char *sort_radix(t_list_swap *a)
 {
     int max_bin_size;
     t_elem_list *current;
-    t_list_swap *list_b;
+    t_list_swap *b;
     //t_elem_list *pivot;
     char    digit;
     char    res;
-    t_elem_list tmp[2];
     int flag;
+    int flag_push;
 
     flag = 0;
     res = NULL;
@@ -206,8 +206,12 @@ char *sort_radix(t_list_swap *a)
     max_bin_size = max_input_digit(a);
     while (max_bin_size != 0)
     {
+        if (flag_push == 1)
+            FreeListe(b);
         current = a->first;
+        flag_push = 0;
         //pivot = a->first;
+        printf("HERE\n");
         while (current != NULL)
         {
             printf("current nb : %d\n",current->nb);
@@ -220,7 +224,18 @@ char *sort_radix(t_list_swap *a)
                     flag = 0;
                 }
                 else
-                    write_and_operation (a, b, "pb");
+                {
+                    if (flag == 0)
+                    {
+                        printf("HERE1\n");
+                        initialisation(&b,current->nb);
+                        printf("HERE2\n");
+                        ft_putstr("pb\n");
+                        flag_push = 1;
+                    }
+                    else
+                        write_and_operation (a, b, "pb");
+                }
 
                 current = a->first;
             }
