@@ -31,6 +31,7 @@ int	main(int argc, char **argv)
 
 	res1 = sort_radix(input);
 	printf("Resultat:\n%s \n",res1);
+	afficherListe(input);
 	return(0);
 	
 	//afficherListe(input);
@@ -131,5 +132,5 @@ int test_operation(int argc, char **argv)
 	FreeListe(input_swap);
 	printf("liste original pushed list swapped freeing \n");
 	FreeListe(input_push);
-
+	return (0);
 }

@@ -196,64 +196,78 @@ char *sort_radix(t_list_swap *a)
     t_list_swap *b;
     //t_elem_list *pivot;
     char    digit;
-    char    res;
+    char    *res;
     int flag;
+    int bin_size;
     int flag_push;
-
+    int i;
     flag = 0;
     res = NULL;
 
     max_bin_size = max_input_digit(a);
-    while (max_bin_size != 0)
+    while (i < max_bin_size )
     {
         if (flag_push == 1)
             FreeListe(b);
         current = a->first;
         flag_push = 0;
         //pivot = a->first;
-        printf("HERE\n");
+        //printf("HERE\n");
         while (current != NULL)
         {
-            printf("current nb : %d\n",current->nb);
+            //printf("current nb : %d\n",current->nb);
+            printf("Val bin : %s\n",a->first->bin);
             
-            if (a->first->bin[max_bin_size] == 0)
+            bin_size = ft_strlen(a->first->bin);
+            if (bin_size > i)
             {
-                if (flag == 1)
+                printf("Val bin end: %c\n",a->first->bin[bin_size - 1]);
+                if (a->first->bin[bin_size - i] == '0')
                 {
-                    write_and_operation (a, b, "ra");
-                    flag = 0;
+                    printf("Flag: %d\n",flag);
+                    if (flag == 1)
+                    {
+                        write_and_operation (a, b, "ra");
+                        flag = 0;
+                    }
+                    else
+                    {
+                        printf("Check pb : %d\n",current->nb);
+                        if (flag_push == 0)
+                        {
+                            initialisation(&b,current->nb);
+                            ft_putstr("pb\n");
+                            flag_push = 1;
+                        }
+                        else
+                            write_and_operation (a, b, "pb");
+                        printf("A check: current nb : %d\n",a->first->nb);
+                        if (b->first != NULL)
+                            printf("B check : current nb : %d\n",b->first->nb);
+                    }
+
+                    current = a->first;
                 }
                 else
                 {
                     if (flag == 0)
-                    {
-                        printf("HERE1\n");
-                        initialisation(&b,current->nb);
-                        printf("HERE2\n");
-                        ft_putstr("pb\n");
-                        flag_push = 1;
-                    }
-                    else
-                        write_and_operation (a, b, "pb");
-                }
-
-                current = a->first;
+                        {
+                            //pivot = current;
+                            flag = 1;
+                        }
+                }  
             }
-            else
-            {
-                if (flag == 0)
-                    {
-                        //pivot = current;
-                        flag = 1;
-                    }
-            }  
             current = current->down;
-            printf("First AFTER nb : %d\n",a->first->nb);
-            printf("current AFTER nb : %d\n",current->nb);
+
+            printf("i : %d\n",i);
+            printf("A : current nb : %d\n",a->first->nb);
             if (b->first != NULL)
-                printf("current nb : %d\n",b->first->nb);
+                printf("B : current nb : %d\n",b->first->nb);
         }
-        max_bin_size --;
+        i++;
     }
+    printf("A : current nb : %d\n",a->first->nb);
+    if (b->first != NULL)
+        printf("B : current nb : %d\n",b->first->nb);
     return (res);
 }
