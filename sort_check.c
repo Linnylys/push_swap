@@ -205,10 +205,13 @@ char *sort_radix(t_list_swap *a)
     res = NULL;
 
     max_bin_size = max_input_digit(a);
+    FreeListe(b);
+    ft_putstr("-----DEBUT*******\n");
+    afficherListe(b);
     while (i < max_bin_size )
     {
         if (flag_push == 1)
-            FreeListe(b);
+            afficherListe(b);
         current = a->first;
         flag_push = 0;
         //pivot = a->first;
@@ -216,7 +219,8 @@ char *sort_radix(t_list_swap *a)
         while (current != NULL)
         {
             //printf("current nb : %d\n",current->nb);
-            printf("Val bin : %s\n",a->first->bin);
+       
+            printf("Val0 bin : %s\n",a->first->bin);
             
             bin_size = ft_strlen(a->first->bin);
             if (bin_size > i)
@@ -236,14 +240,15 @@ char *sort_radix(t_list_swap *a)
                         if (flag_push == 0)
                         {
                             initialisation(&b,current->nb);
+                            afficherListe(b);
                             ft_putstr("pb\n");
                             flag_push = 1;
                         }
                         else
                             write_and_operation (a, b, "pb");
-                        printf("A check: current nb : %d\n",a->first->nb);
+                        printf("A check: current nb : %s\n",a->first->bin);
                         if (b->first != NULL)
-                            printf("B check : current nb : %d\n",b->first->nb);
+                            printf("B check : current nb : %s\n",b->first->bin);
                     }
 
                     current = a->first;
@@ -260,9 +265,11 @@ char *sort_radix(t_list_swap *a)
             current = current->down;
 
             printf("i : %d\n",i);
-            printf("A : current nb : %d\n",a->first->nb);
-            if (b->first != NULL)
-                printf("B : current nb : %d\n",b->first->nb);
+            afficherListe(a);
+            afficherListe(b);
+            //printf("A : current nb : %s\n",a->first->bin);
+            //if (b->first != NULL)
+            //    printf("B : current nb : %s\n",b->first->bin);
         }
         i++;
     }
