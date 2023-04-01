@@ -33,7 +33,7 @@ void push_a(t_list_swap *a, t_list_swap *b)
 
     if (a && b && b ->first != NULL)
     {
-        insert(a,b->first->nb);
+        insert_bin(a,b->first->nb,b->first->bin);
         tmp = b->first->down;
         free(b->first);
         b->first = tmp;

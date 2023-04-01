@@ -109,6 +109,7 @@ char	*convert_bin_updated(char *bin, int max_digit);
 char    *write_and_operation (t_list_swap *a, t_list_swap *b, char *str);
 int 	initialisation_bis(t_list_swap **pliste,int first_nb);
 int afficherListe_bin(t_list_swap *liste);
-char *sort_radix(t_list_swap *a);
+char *sort_radix(t_list_swap *a, int max_bin_size);
+int insert_bin(t_list_swap *liste, int nb, char *bin);
 
 #endif

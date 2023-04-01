@@ -19,7 +19,7 @@ int	main(int argc, char **argv)
 {
    //printf("conversion bin : %s\n",convert_bin(21474));
 
-	
+	int	max_bin_size;
 	t_list_swap *input;
 	t_list_swap *inputbis;
 	int	count;
@@ -30,11 +30,10 @@ int	main(int argc, char **argv)
 	afficherListe(input);
 	afficherListe_bin(input);
 
-
-	list_bin_update(input, max_input_digit(input));
+	max_bin_size = max_input_digit(input);
+	list_bin_update(input, max_bin_size);
 	afficherListe_bin(input);
-	return (0);
-	res1 = sort_radix(input);
+	res1 = sort_radix(input, max_bin_size);
 	if (res1 != NULL)
 		return (1);
 	printf("Resultat:\n%s \n",res1);

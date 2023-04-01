@@ -42,6 +42,25 @@ int initialisation(t_list_swap **pliste,int first_nb)
     return (1);
 }
 
+int initialisation_bin(t_list_swap **pliste,int first_nb)
+{
+    t_list_swap *liste;
+    t_elem_list *elem;
+    //t_elem_list *elem_end;
+
+    liste = malloc(sizeof(*liste));
+    elem = malloc(sizeof(*elem));
+    if (liste == NULL || elem == NULL)
+        return (0);
+    elem->nb= first_nb;
+    elem->bin = convert_bin(elem->nb);
+    elem->up = NULL;
+    elem->down = NULL;
+    liste->first = elem;
+    liste->end = elem;
+    *pliste =liste;
+    return (1);
+}
 
 
 int insert(t_list_swap *liste, int nb)
@@ -53,6 +72,25 @@ int insert(t_list_swap *liste, int nb)
         return (0);
     new->nb = nb;
     new->bin = convert_bin(new->nb);
+    new->up = NULL;
+    new->down = liste->first;
+    if (liste->first->down == NULL)
+    {
+        liste->end->up = new;
+    }
+    liste->first = new;
+    return (0);
+}
+
+int insert_bin(t_list_swap *liste, int nb, char *bin)
+{
+    t_elem_list *new;
+
+    new = malloc(sizeof(*new));
+    if (liste == NULL || new == NULL)
+        return (0);
+    new->nb = nb;
+    new->bin = bin;
     new->up = NULL;
     new->down = liste->first;
     if (liste->first->down == NULL)
@@ -152,6 +190,23 @@ int delete_first(t_list_swap *liste)
         t_elem_list *todelete;
         todelete = liste->first;
         liste->first = liste->first->down;
+        free(todelete->bin);
+        free(todelete);
+    }
+     return (0);
+}
+
+int delete_end(t_list_swap *liste)
+{
+    if (liste == NULL)
+        return (0);
+
+    if (liste->end != NULL)
+    {
+        t_elem_list *todelete;
+        todelete = liste->end;
+        liste->end = liste->end->up;
+        liste->end->down = NULL;
         free(todelete->bin);
         free(todelete);
     }

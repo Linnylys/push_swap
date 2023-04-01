@@ -213,9 +213,9 @@ int list_bin_update(t_list_swap *a, int max_bin_size)
         return (-1);
 }
 
-char *sort_radix(t_list_swap *a)
+char *sort_radix(t_list_swap *a, int max_bin_size)
 {
-    int max_bin_size;
+    //int max_bin_size;
     t_elem_list *current;
     t_list_swap *b;
     //t_elem_list *pivot;
@@ -232,10 +232,10 @@ char *sort_radix(t_list_swap *a)
 
     ft_putstr("-----IN*******\n");
     ft_putstr("Affiche A : ");
-    afficherListe(a);
+    afficherListe_bin(a);
     if (!a)
         return (NULL);
-    max_bin_size = max_input_digit(a);
+    //max_bin_size = max_input_digit(a);
     printf("max_bin_size ; %d\n",max_bin_size);
     //if (b)
     //    FreeListe(b);
@@ -246,33 +246,33 @@ char *sort_radix(t_list_swap *a)
     
 
     num_push = 0;
-    while (i < 3 )
+    while (i < 4 )
     {
-        if (flag_push == 1)
-            afficherListe_bin(b);
+        //if (flag_push == 1)
+          //  afficherListe_bin(b);
         current = a->first;
         flag_push = 0;
         //pivot = a->first;
         //printf("HERE\n");
         //ft_putstr("-----Step 2*******\n");
-
+        printf("count i : %d\n",i);
         while (current != NULL)
         {
             //printf("current nb : %d\n",current->nb);
        
             //printf("Val0 bin : %s\n",a->first->bin);
             
-            bin_size = ft_strlen(current->bin);
+            bin_size = max_bin_size;
+
             //printf("print str: %d\n",bin_size);
             //ft_putstr("-----Step 2.0*******\n");
-            ft_putstr("\n");
-            if (bin_size > i)
-            {
+            //ft_putstr("\n");
+
                 //ft_putstr("-----Step 2.1*******\n");
-                printf("Val bin current: %c\n",current->bin[bin_size - i - 1]);
+                printf("Val bin current: %s - num %d - bin %c\n",current->bin,bin_size - i - 1 ,current->bin[bin_size - i - 1]);
                 if (current->bin[bin_size - i -1] == '0')
                 {
-                    printf("Flag: %d\n",flag);
+                    //printf("Flag: %d\n",flag);
                     if (flag == 1)
                     {
                         write_and_operation (a, b, "ra");
@@ -283,10 +283,11 @@ char *sort_radix(t_list_swap *a)
                         printf("Check pb : %s\n",current->bin);
                         if (flag_push == 0)
                         {
-                            initialisation(&b,current->nb);
-                            ft_putstr("Affiche B afetr init : ");
-                            afficherListe_bin(b);
-                            ft_putstr("pb\n");
+                            initialisation_bin(&b,0);
+                            //ft_putstr("Affiche B afetr init : ");
+                            //afficherListe_bin(b);
+                            write_and_operation (a, b, "pb");
+                            delete_end(b);
                             num_push ++;
                             flag_push = 1;
                         }
@@ -294,16 +295,16 @@ char *sort_radix(t_list_swap *a)
                         {
                             write_and_operation (a, b, "pb");
                             num_push ++;
-                            ft_putstr("Affiche B : ");
-                            afficherListe_bin(b);
+                            //ft_putstr("Affiche B : ");
+                            //afficherListe_bin(b);
                         }
                         //printf("A check: current nb : %s\n",a->first->bin);
                         //if (b->first != NULL)
                         //    printf("B check : current nb : %s\n",b->first->bin);
                     }
-                    ft_putstr("reinit\n");
+                    //ft_putstr("reinit\n");
                     current = a->first;
-                    printf("Check after init pb : %s\n",current->bin);
+                    //printf("Check after init pb : %s\n",current->bin);
                 }
                 else
                 {
@@ -312,33 +313,32 @@ char *sort_radix(t_list_swap *a)
                             //pivot = current;
                             flag = 1;
                         }
-                    ft_putstr("current plus\n");
+                    //ft_putstr("current plus\n");
                     current = current->down;
                 }  
                 
-            }
-
-
-            //printf("i : %d\n",i);
-            //afficherListe(a);
-            //afficherListe(b);
-            //printf("A : current nb : %s\n",current);
-            //if (b->first != NULL)
-            //    printf("B : current nb : %s\n",b->first->bin);
+          afficherListe_bin(a);  
         }
 
         if ( num_push != 0)
             {
+                ft_putstr("-----PUSH A*******\n");
                 while ( num_push !=0)
                 {
+                printf("num_push : %d\n",num_push);                    
+                afficherListe_bin(a);
+                afficherListe_bin(b);
                     write_and_operation (a, b, "pa");
                     num_push --;
                 }
+                ft_putstr("-----PUSH A END*******\n");
+                afficherListe_bin(a);
+                afficherListe_bin(b);
             }
 
-    ft_putstr("\n\nLoop result\n");
+    ft_putstr("\n\nLoop result :");
     afficherListe_bin(a);
-    afficherListe_bin(b);
+    //afficherListe_bin(b);
         i++;
     }
     //printf("A : current nb : %d\n",a->first->nb);
