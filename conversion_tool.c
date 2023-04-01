@@ -33,3 +33,24 @@ char	*convert_bin(int nb)
     }
     return (res);
 }
+
+char	*convert_bin_updated(char *bin, int max_digit)
+{
+    int len_bin;
+    int i;
+    char    *res;
+
+    len_bin = ft_strlen(bin);
+    i = 0;
+    res =  malloc (max_digit + 1);
+    while (i <= max_digit)
+    {
+        if ( i <= len_bin)
+            res[max_digit - i] = bin[len_bin - i];
+        else
+            res[max_digit - i] = '0';
+        i++;
+    }
+    return (res);
+}
+

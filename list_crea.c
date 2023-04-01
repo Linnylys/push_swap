@@ -42,6 +42,8 @@ int initialisation(t_list_swap **pliste,int first_nb)
     return (1);
 }
 
+
+
 int insert(t_list_swap *liste, int nb)
 {
     t_elem_list *new;
@@ -60,6 +62,9 @@ int insert(t_list_swap *liste, int nb)
     liste->first = new;
     return (0);
 }
+
+
+
 
 t_list_swap *affect_list(char **str, int len)
 {
@@ -246,7 +251,9 @@ int FreeListe(t_list_swap *liste)
     t_elem_list *current;
     t_elem_list *tmp;
 
+        printf("In Freeliste : %s\n",liste);
     current = liste->first;
+    printf("liste first : %s\n",current->bin);
     while (current != NULL)
     {
         tmp = current->down;

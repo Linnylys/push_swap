@@ -24,12 +24,19 @@ int	main(int argc, char **argv)
 	t_list_swap *inputbis;
 	int	count;
 	char *res1;
+	int max;
 	input = affect_list(argv, argc - 1);
 	//test_operation(argc,argv);
 	afficherListe(input);
 	afficherListe_bin(input);
 
+
+	list_bin_update(input, max_input_digit(input));
+	afficherListe_bin(input);
+	return (0);
 	res1 = sort_radix(input);
+	if (res1 != NULL)
+		return (1);
 	printf("Resultat:\n%s \n",res1);
 	afficherListe(input);
 	return(0);
