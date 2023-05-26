@@ -10,8 +10,10 @@ void swap_a(t_list_swap *a, t_list_swap *b)
     {
         elem = a->first->down;
         a->first->down =  a->first->down->down;
+        a->first->pos --;
         elem->down = a->first;
         elem->up = NULL;
+        elem->pos ++;
         a->first = elem;
     }
 }

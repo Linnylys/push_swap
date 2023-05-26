@@ -275,7 +275,8 @@ char *sort_radix(t_list_swap *a, int max_bin_size)
                     //printf("Flag: %d\n",flag);
                     if (flag == 1)
                     {
-                        write_and_operation (a, b, "ra");
+                        //write_and_operation (a, b, "ra");
+                        move_to_the_top(a,b,current);
                         flag = 0;
                     }
                     else
@@ -350,4 +351,46 @@ char *sort_radix(t_list_swap *a, int max_bin_size)
     afficherListe_bin(a);
     afficherListe_bin(b);
     return (res);
+}
+
+int move_to_the_top(t_list_swap *a,t_list_swap *b,t_elem_list *current)
+{
+    int len_list;
+    int count;
+
+    count = 0;
+    len_list = a->end->pos - a->first->pos;
+
+    if (current->pos <= len_list/2)
+    {
+        while (current->pos <= len_list/2 && current->pos != a->end->pos)
+        {
+            write_and_operation (a, b, "rra");
+            
+            count++;
+        }
+        write_and_operation (a, b, "pb");
+        while (count !=0)
+        {
+            write_and_operation (a, b, "ra");
+            count --;
+        }
+    }
+    else
+    {
+        while (current->pos > len_list/2 && current->pos != 0)
+        {
+            write_and_operation (a, b, "ra");
+            printf("pos : %d\n", current->pos);
+            count++;
+        }
+        write_and_operation (a, b, "ra");
+        write_and_operation (a, b, "pb");
+        while (count !=0)
+        {
+            write_and_operation (a, b, "rra");
+            count --;
+        }
+    }
+    return (0);
 }

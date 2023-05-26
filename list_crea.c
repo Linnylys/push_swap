@@ -34,6 +34,7 @@ int initialisation(t_list_swap **pliste,int first_nb)
         return (0);
     elem->nb= first_nb;
     elem->bin = convert_bin(elem->nb);
+    elem->pos = 0;
     elem->up = NULL;
     elem->down = NULL;
     liste->first = elem;
@@ -55,6 +56,7 @@ int initialisation_bin(t_list_swap **pliste,int first_nb)
     elem->nb= first_nb;
     elem->bin = convert_bin(elem->nb);
     elem->up = NULL;
+    elem->pos = 0;
     elem->down = NULL;
     liste->first = elem;
     liste->end = elem;
@@ -74,6 +76,7 @@ int insert(t_list_swap *liste, int nb)
     new->bin = convert_bin(new->nb);
     new->up = NULL;
     new->down = liste->first;
+    liste->first->pos ++;
     if (liste->first->down == NULL)
     {
         liste->end->up = new;
@@ -93,6 +96,7 @@ int insert_bin(t_list_swap *liste, int nb, char *bin)
     new->bin = bin;
     new->up = NULL;
     new->down = liste->first;
+    liste->first->pos ++;
     if (liste->first->down == NULL)
     {
         liste->end->up = new;
@@ -174,6 +178,7 @@ int first_insert(t_list_swap *liste, int nb)
     new->nb = nb;
     new->bin = convert_bin(new->nb);
     new->up = NULL;
+    liste->first->pos ++;
     new->down = liste->first;
     liste->end->up = liste->first;
     liste->first = new;
