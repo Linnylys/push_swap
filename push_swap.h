@@ -36,6 +36,7 @@ typedef struct s_elem_list
 {
 	int				nb;
 	char			*bin;
+	int				pos;
 	struct s_elem_list	*up;
 	struct s_elem_list	*down;
 }	t_elem_list;

@@ -244,6 +244,7 @@ char *sort_radix(t_list_swap *a, int max_bin_size)
     //afficherListe(b);
     ft_putstr("-----Step 1*******\n");
     
+    int pos;
 
     num_push = 0;
     while (i < 4 )
@@ -252,12 +253,14 @@ char *sort_radix(t_list_swap *a, int max_bin_size)
           //  afficherListe_bin(b);
         current = a->first;
         flag_push = 0;
+        pos = 0;
         //pivot = a->first;
         //printf("HERE\n");
         //ft_putstr("-----Step 2*******\n");
         printf("count i : %d\n",i);
         while (current != NULL)
         {
+           
             //printf("current nb : %d\n",current->nb);
        
             //printf("Val0 bin : %s\n",a->first->bin);
@@ -269,15 +272,22 @@ char *sort_radix(t_list_swap *a, int max_bin_size)
             //ft_putstr("\n");
 
                 //ft_putstr("-----Step 2.1*******\n");
-                printf("Val bin current: %s - num %d - bin %c\n",current->bin,bin_size - i - 1 ,current->bin[bin_size - i - 1]);
+                 printf("\n pos bis: %d\n\n",pos);
+                printf("Val bin current A: %s - num %d - bin %c\n",current->bin,bin_size - i - 1 ,current->bin[bin_size - i - 1]);
                 if (current->bin[bin_size - i -1] == '0')
                 {
-                    //printf("Flag: %d\n",flag);
+                    printf("\n pos bis: %d\n\n",pos);
                     if (flag == 1)
                     {
+                        afficherListe_bin(a); 
+                        afficherListe_bin(b); 
                         //write_and_operation (a, b, "ra");
-                        move_to_the_top(a,b,current);
+                        move_to_the_top(a,b,current,pos,4);
+                        afficherListe_bin(a); 
+                        afficherListe_bin(b); 
+                        printf("HERE2\n");
                         flag = 0;
+                        pos = -1;
                     }
                     else
                     {
@@ -291,11 +301,14 @@ char *sort_radix(t_list_swap *a, int max_bin_size)
                             delete_end(b);
                             num_push ++;
                             flag_push = 1;
+                            pos = -1;
+                            //pos++;
                         }
                         else
                         {
                             write_and_operation (a, b, "pb");
                             num_push ++;
+                            pos = -1;
                             //ft_putstr("Affiche B : ");
                             //afficherListe_bin(b);
                         }
@@ -319,6 +332,7 @@ char *sort_radix(t_list_swap *a, int max_bin_size)
                 }  
                 
           afficherListe_bin(a);  
+          pos++;
         }
 
         if ( num_push != 0)
@@ -342,53 +356,62 @@ char *sort_radix(t_list_swap *a, int max_bin_size)
     //afficherListe_bin(b);
         i++;
     }
-    //printf("A : current nb : %d\n",a->first->nb);
-   // if (b->first != NULL)
-     //   printf("B : current nb : %d\n",b->first->nb);
-    //afficherListe(a);
-    //afficherListe(b);
+
     ft_putstr("\n\nExit\n");
     afficherListe_bin(a);
     afficherListe_bin(b);
     return (res);
 }
 
-int move_to_the_top(t_list_swap *a,t_list_swap *b,t_elem_list *current)
+int move_to_the_top(t_list_swap *a,t_list_swap *b,t_elem_list *current,int pos,int len_list)
 {
-    int len_list;
+    //int len_list;
     int count;
 
     count = 0;
-    len_list = a->end->pos - a->first->pos;
-
-    if (current->pos <= len_list/2)
+    //len_list = a->end->pos - a->first->pos;
+    afficherListe(a);
+    printf("BEFORE pos : %d\n",pos);
+    printf("BEFORE nb : %d\n\n",current->nb);
+    if (pos <= len_list/2)
     {
-        while (current->pos <= len_list/2 && current->pos != a->end->pos)
+        while (pos <= len_list/2 && pos > 0)
         {
-            write_and_operation (a, b, "rra");
-            
+             printf("move2top\n");
+             afficherListe_bin(a);
+            write_and_operation (a, b, "ra");
+            printf("\npos : %d\n\n",pos);
             count++;
+            pos --;
         }
         write_and_operation (a, b, "pb");
-        while (count !=0)
-        {
-            write_and_operation (a, b, "ra");
+        while (count > 0)
+        { 
+            printf("move2top\n");
+             afficherListe_bin(a);
+            write_and_operation (a, b, "rra");
+           
             count --;
         }
     }
     else
     {
-        while (current->pos > len_list/2 && current->pos != 0)
+        while (pos > len_list/2 && pos > 0)
         {
-            write_and_operation (a, b, "ra");
-            printf("pos : %d\n", current->pos);
-            count++;
-        }
-        write_and_operation (a, b, "ra");
-        write_and_operation (a, b, "pb");
-        while (count !=0)
-        {
+             printf("move22top\n");
+             afficherListe_bin(a);
             write_and_operation (a, b, "rra");
+            printf("pos : %d\n", pos);
+            count++;
+            pos--;
+        }
+        write_and_operation (a, b, "rra");
+        write_and_operation (a, b, "pb");
+        while (count > 0)
+        {
+             printf("move22top\n");
+             afficherListe_bin(a);
+            write_and_operation (a, b, "ra");
             count --;
         }
     }
