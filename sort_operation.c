@@ -62,6 +62,7 @@ void rot_ra(t_list_swap *a, t_list_swap *b)
         elem->bin = a->end->bin;
         elem->down = a->first;
         elem->up = NULL;
+        elem->pos= a->first->pos;
         a->end->up->down = NULL;
         tmp = a->end->up;
         if (a->end)

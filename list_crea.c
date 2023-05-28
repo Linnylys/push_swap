@@ -53,22 +53,44 @@ int initialisation_bin(t_list_swap **pliste,int first_nb)
     elem = malloc(sizeof(*elem));
     if (liste == NULL || elem == NULL)
         return (0);
-    elem->nb= first_nb;
+    /*elem->nb= first_nb;
     elem->bin = convert_bin(elem->nb);
     elem->up = NULL;
     elem->pos = 0;
     elem->down = NULL;
     liste->first = elem;
-    liste->end = elem;
+    liste->end = elem;*/
+    liste->first = NULL;
+    liste->end = NULL;
     *pliste =liste;
     return (1);
 }
+int insert_first_elem(t_list_swap *liste,int first_nb, char *bin)
+{
+    t_elem_list *elem;
 
+    elem = malloc(sizeof(*elem));
+    if (liste == NULL || elem == NULL)
+        return (0);
+    elem->nb= first_nb;
+    //elem->bin = convert_bin(elem->nb);
+    elem->bin =bin;
+    elem->up = NULL;
+    elem->down = NULL;
+    liste->first = elem;
+    liste->end = elem;
+
+}
 
 int insert(t_list_swap *liste, int nb)
 {
     t_elem_list *new;
 
+    /*if (liste->first == NULL)
+    {
+        insert_first_elem(liste,nb);
+        return (0);
+    }*/
     new = malloc(sizeof(*new));
     if (liste == NULL || new == NULL)
         return (0);
@@ -89,6 +111,11 @@ int insert_bin(t_list_swap *liste, int nb, char *bin)
 {
     t_elem_list *new;
 
+    if (liste->first == NULL)
+    {
+        insert_first_elem(liste,nb,bin);
+        return (0);
+    }
     new = malloc(sizeof(*new));
     if (liste == NULL || new == NULL)
         return (0);

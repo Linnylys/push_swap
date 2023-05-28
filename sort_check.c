@@ -247,6 +247,7 @@ char *sort_radix(t_list_swap *a, int max_bin_size)
     int pos;
 
     num_push = 0;
+    initialisation_bin(&b,0);
     while (i < 4 )
     {
         //if (flag_push == 1)
@@ -276,13 +277,14 @@ char *sort_radix(t_list_swap *a, int max_bin_size)
                 printf("Val bin current A: %s - num %d - bin %c\n",current->bin,bin_size - i - 1 ,current->bin[bin_size - i - 1]);
                 if (current->bin[bin_size - i -1] == '0')
                 {
-                    printf("\n pos bis: %d\n\n",pos);
+                    printf("\n pos bis colum: %d\n\n",pos);
+                    printf("\n pos bis binaire: %d\n\n",bin_size - i -1);
                     if (flag == 1)
                     {
                         afficherListe_bin(a); 
                         afficherListe_bin(b); 
                         //write_and_operation (a, b, "ra");
-                        move_to_the_top(a,b,current,pos,4);
+                        move_to_the_top(a,b,current,pos,30);
                         afficherListe_bin(a); 
                         afficherListe_bin(b); 
                         printf("HERE2\n");
@@ -294,11 +296,13 @@ char *sort_radix(t_list_swap *a, int max_bin_size)
                         printf("Check pb : %s\n",current->bin);
                         if (flag_push == 0)
                         {
-                            initialisation_bin(&b,0);
-                            //ft_putstr("Affiche B afetr init : ");
-                            //afficherListe_bin(b);
+                            afficherListe_bin(a); 
+                            afficherListe_bin(b); 
+                            //initialisation_bin(&b,0);
                             write_and_operation (a, b, "pb");
-                            delete_end(b);
+                            afficherListe_bin(a); 
+                            afficherListe_bin(b); 
+                            //delete_end(b);
                             num_push ++;
                             flag_push = 1;
                             pos = -1;
@@ -335,10 +339,13 @@ char *sort_radix(t_list_swap *a, int max_bin_size)
           pos++;
         }
 
-        if ( num_push != 0)
+        //if ( num_push != 0)
             {
                 ft_putstr("-----PUSH A*******\n");
-                while ( num_push !=0)
+                //while ( num_push !=0)
+                afficherListe_bin(a);
+                afficherListe_bin(b);
+                while (b->first != NULL)
                 {
                 printf("num_push : %d\n",num_push);                    
                 afficherListe_bin(a);
@@ -360,8 +367,13 @@ char *sort_radix(t_list_swap *a, int max_bin_size)
     ft_putstr("\n\nExit\n");
     afficherListe_bin(a);
     afficherListe_bin(b);
+
+    afficherListe(a);
+    afficherListe(b);
     return (res);
 }
+
+
 
 int move_to_the_top(t_list_swap *a,t_list_swap *b,t_elem_list *current,int pos,int len_list)
 {
@@ -384,6 +396,8 @@ int move_to_the_top(t_list_swap *a,t_list_swap *b,t_elem_list *current,int pos,i
             count++;
             pos --;
         }
+        afficherListe_bin(a);
+        afficherListe_bin(b);
         write_and_operation (a, b, "pb");
         while (count > 0)
         { 
