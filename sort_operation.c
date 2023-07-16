@@ -33,12 +33,22 @@ void push_a(t_list_swap *a, t_list_swap *b)
 {
     t_elem_list *tmp;
 
+
     if (a && b && b ->first != NULL)
     {
+
         insert_bin(a,b->first->nb,b->first->bin);
         tmp = b->first->down;
-        free(b->first);
-        b->first = tmp;
+        printf("study %s\n",tmp);
+
+            free(b->first);
+            b->first = tmp;
+        if (tmp != NULL)
+        {
+            b->first->up = NULL;
+            b->end->down = NULL;
+        }
+
     }
 }
 
@@ -120,7 +130,7 @@ void rot_rr(t_list_swap *a, t_list_swap *b)
 char    *write_and_operation (t_list_swap *a, t_list_swap *b, char *str)
 {
     char    *res;
-
+     printf("yeah!! %s\n",str);
     if (ft_strcmp(str,"sa") == 0)
     {
         swap_a(a,b);

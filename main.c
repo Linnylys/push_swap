@@ -28,6 +28,8 @@ int	main(int argc, char **argv)
 	input = affect_list(argv, argc - 1);
 	//test_operation(argc,argv);
 	afficherListe(input);
+	//afficherListe2(input);
+
 	afficherListe_bin(input);
 
 	max_bin_size = max_input_digit(input);

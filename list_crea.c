@@ -85,12 +85,14 @@ int insert_first_elem(t_list_swap *liste,int first_nb, char *bin)
 int insert(t_list_swap *liste, int nb)
 {
     t_elem_list *new;
+    t_elem_list *old;
 
     /*if (liste->first == NULL)
     {
         insert_first_elem(liste,nb);
         return (0);
     }*/
+    old = liste->first;
     new = malloc(sizeof(*new));
     if (liste == NULL || new == NULL)
         return (0);
@@ -98,12 +100,15 @@ int insert(t_list_swap *liste, int nb)
     new->bin = convert_bin(new->nb);
     new->up = NULL;
     new->down = liste->first;
+    liste->first->up = new;
     liste->first->pos ++;
     if (liste->first->down == NULL)
     {
         liste->end->up = new;
+
     }
     liste->first = new;
+    
     return (0);
 }
 
@@ -123,6 +128,7 @@ int insert_bin(t_list_swap *liste, int nb, char *bin)
     new->bin = bin;
     new->up = NULL;
     new->down = liste->first;
+    liste->first->up = new;
     liste->first->pos ++;
     if (liste->first->down == NULL)
     {
@@ -300,6 +306,28 @@ int afficherListe(t_list_swap *liste)
     {
         printf("%d -> ", current->nb);
         current = current->down;
+    }
+    printf("NULL\n");
+    return (0);
+      }
+    else
+        return (-1);
+}
+
+int afficherListe2(t_list_swap *liste)
+{
+    if (liste)
+      {  
+    if (liste == NULL)
+        return (0);
+
+    t_elem_list *current;
+    
+    current = liste->end;
+    while (current != NULL)
+    {
+        printf("%d -> ", current->nb);
+        current = current->up;
     }
     printf("NULL\n");
     return (0);

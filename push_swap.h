@@ -112,5 +112,6 @@ int 	initialisation_bis(t_list_swap **pliste,int first_nb);
 int afficherListe_bin(t_list_swap *liste);
 char *sort_radix(t_list_swap *a, int max_bin_size);
 int insert_bin(t_list_swap *liste, int nb, char *bin);
+int afficherListe2(t_list_swap *liste);
 
 #endif

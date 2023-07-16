@@ -250,115 +250,85 @@ char *sort_radix(t_list_swap *a, int max_bin_size)
     initialisation_bin(&b,0);
     while (i < 4 )
     {
-        //if (flag_push == 1)
-          //  afficherListe_bin(b);
-        current = a->first;
+
+        current = a->end;
         flag_push = 0;
         pos = 0;
-        //pivot = a->first;
-        //printf("HERE\n");
-        //ft_putstr("-----Step 2*******\n");
+ 
         printf("count i : %d\n",i);
         while (current != NULL)
         {
-           
-            //printf("current nb : %d\n",current->nb);
-       
-            //printf("Val0 bin : %s\n",a->first->bin);
-            
+                       
             bin_size = max_bin_size;
-
-            //printf("print str: %d\n",bin_size);
-            //ft_putstr("-----Step 2.0*******\n");
-            //ft_putstr("\n");
-
-                //ft_putstr("-----Step 2.1*******\n");
-                 printf("\n pos bis: %d\n\n",pos);
-                printf("Val bin current A: %s - num %d - bin %c\n",current->bin,bin_size - i - 1 ,current->bin[bin_size - i - 1]);
+                printf("HERE1 avec i : %d\n",i);
+                afficherListe(a);
+                afficherListe2(a);
+                printf("HERE1 bin %d\n",current->nb);
                 if (current->bin[bin_size - i -1] == '0')
                 {
-                    printf("\n pos bis colum: %d\n\n",pos);
-                    printf("\n pos bis binaire: %d\n\n",bin_size - i -1);
-                    if (flag == 1)
-                    {
+                    printf("HERE1bis\n");
+                        afficherListe_bin(a); 
+                        afficherListe_bin(b);
+                         afficherListe2(a); 
+                        write_and_operation (a, b, "ra");
+                         afficherListe2(a);
+                         afficherListe2(b);
+                        write_and_operation (a, b, "pb");
+                        afficherListe(a);
+                         afficherListe(b);
+                         afficherListe2(a);
+                         afficherListe2(b);
+                        num_push ++;
+                        //move_to_the_top(a,b,current,pos,30);
                         afficherListe_bin(a); 
                         afficherListe_bin(b); 
-                        //write_and_operation (a, b, "ra");
-                        move_to_the_top(a,b,current,pos,30);
-                        afficherListe_bin(a); 
-                        afficherListe_bin(b); 
+                        afficherListe2(a);
                         printf("HERE2\n");
                         flag = 0;
                         pos = -1;
-                    }
-                    else
-                    {
-                        printf("Check pb : %s\n",current->bin);
-                        if (flag_push == 0)
-                        {
-                            afficherListe_bin(a); 
-                            afficherListe_bin(b); 
-                            //initialisation_bin(&b,0);
-                            write_and_operation (a, b, "pb");
-                            afficherListe_bin(a); 
-                            afficherListe_bin(b); 
-                            //delete_end(b);
-                            num_push ++;
-                            flag_push = 1;
-                            pos = -1;
-                            //pos++;
-                        }
-                        else
-                        {
-                            write_and_operation (a, b, "pb");
-                            num_push ++;
-                            pos = -1;
-                            //ft_putstr("Affiche B : ");
-                            //afficherListe_bin(b);
-                        }
-                        //printf("A check: current nb : %s\n",a->first->bin);
-                        //if (b->first != NULL)
-                        //    printf("B check : current nb : %s\n",b->first->bin);
-                    }
+
+
                     //ft_putstr("reinit\n");
-                    current = a->first;
+                    current = a->end;
                     //printf("Check after init pb : %s\n",current->bin);
                 }
                 else
                 {
-                    if (flag == 0)
-                        {
-                            //pivot = current;
-                            flag = 1;
-                        }
-                    //ft_putstr("current plus\n");
-                    current = current->down;
+                    printf("HERE1bis_else\n");
+                    current = current->up;
                 }  
                 
-          afficherListe_bin(a);  
+          afficherListe_bin(a);
+                                  printf("HERE2bis\n");  
           pos++;
         }
 
-        //if ( num_push != 0)
+        if ( num_push != 0)
             {
                 ft_putstr("-----PUSH A*******\n");
                 //while ( num_push !=0)
                 afficherListe_bin(a);
                 afficherListe_bin(b);
-                while (b->first != NULL)
+                                        printf("HERE3\n");
+                while (num_push >0)
                 {
                 printf("num_push : %d\n",num_push);                    
                 afficherListe_bin(a);
                 afficherListe_bin(b);
+                    write_and_operation (a, b, "rb");
                     write_and_operation (a, b, "pa");
                     num_push --;
+                    
                 }
+                initialisation_bin(&b,0);
                 ft_putstr("-----PUSH A END*******\n");
                 afficherListe_bin(a);
                 afficherListe_bin(b);
             }
+        
 
-    ft_putstr("\n\nLoop result :");
+    ft_putstr("\n\nLoop result i:");
+    printf("%d\n",i);
     afficherListe_bin(a);
     //afficherListe_bin(b);
         i++;
