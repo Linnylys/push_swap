@@ -27,19 +27,19 @@ int	main(int argc, char **argv)
 	int max;
 	input = affect_list(argv, argc - 1);
 	//test_operation(argc,argv);
-	afficherListe(input);
+	afficherListe(input,"input");
 	//afficherListe2(input);
 
-	afficherListe_bin(input);
+	afficherListe_bin(input,"input");
 
 	max_bin_size = max_input_digit(input);
 	list_bin_update(input, max_bin_size);
-	afficherListe_bin(input);
+	afficherListe_bin(input,"input");
 	res1 = sort_radix(input, max_bin_size);
 	if (res1 != NULL)
 		return (1);
 	printf("Resultat:\n%s \n",res1);
-	afficherListe(input);
+	afficherListe(input,"input");
 	return(0);
 	
 	//afficherListe(input);
@@ -50,8 +50,8 @@ int	main(int argc, char **argv)
 	res1 = small_input_sorting(input,inputbis,count);
 	printf("Resultat:\n%s \n",res1);
 
-	afficherListe(input);
-	afficherListe_bin(input);
+	afficherListe(input,"input");
+	afficherListe_bin(input,"input");
 	return (0);
 }
 
@@ -111,22 +111,22 @@ int test_operation(int argc, char **argv)
 	input_push = affect_list(argv, argc - 1);
 	
 	
-	afficherListe(input);
+	afficherListe(input,"input");
 	printf("liste original \n");
 	
 	printf("Rotation liste original \n");
 	rot_a(input_rot,NULL);
-	afficherListe(input_rot);
+	afficherListe(input_rot,"input");
 
 	
 	swap_b(input,input_swap);
 	printf("liste swapped \n");
-	afficherListe(input_swap);
+	afficherListe(input_swap,"input");
 
 	push_b(input, input_push);
 	printf("liste original pushed list swapped \n");
-	afficherListe(input);
-	afficherListe(input_push);
+	afficherListe(input,"input");
+	afficherListe(input_push,"input_push");
 	
 
 	

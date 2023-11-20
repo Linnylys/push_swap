@@ -292,7 +292,7 @@ int insert_elem(t_list_swap *liste, int nb, int rnk)
      return (0);
 }
 
-int afficherListe(t_list_swap *liste)
+int afficherListe(t_list_swap *liste, char *str)
 {
     if (liste)
       {  
@@ -300,7 +300,7 @@ int afficherListe(t_list_swap *liste)
         return (0);
 
     t_elem_list *current;
-    
+    printf("List %s :",str);
     current = liste->first;
     while (current != NULL)
     {
@@ -314,13 +314,13 @@ int afficherListe(t_list_swap *liste)
         return (-1);
 }
 
-int afficherListe2(t_list_swap *liste)
+int afficherListe2(t_list_swap *liste, char *str)
 {
     if (liste)
       {  
     if (liste == NULL)
         return (0);
-
+    printf("List %s :",str);
     t_elem_list *current;
     
     current = liste->end;
@@ -336,7 +336,7 @@ int afficherListe2(t_list_swap *liste)
         return (-1);
 }
 
-int afficherListe_bin(t_list_swap *liste)
+int afficherListe_bin(t_list_swap *liste, char *str)
 {
     if (liste)
       {  
@@ -344,7 +344,7 @@ int afficherListe_bin(t_list_swap *liste)
         return (0);
 
     t_elem_list *current;
-
+    printf("List %s :",str);
     current = liste->first;
     while (current != NULL)
     {

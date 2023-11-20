@@ -232,7 +232,7 @@ char *sort_radix(t_list_swap *a, int max_bin_size)
 
     ft_putstr("-----IN*******\n");
     ft_putstr("Affiche A : ");
-    afficherListe_bin(a);
+    afficherListe_bin(a,"a");
     if (!a)
         return (NULL);
     //max_bin_size = max_input_digit(a);
@@ -261,28 +261,28 @@ char *sort_radix(t_list_swap *a, int max_bin_size)
                        
             bin_size = max_bin_size;
                 printf("HERE1 avec i : %d\n",i);
-                afficherListe(a);
-                afficherListe2(a);
+                afficherListe(a,"a");
+                afficherListe2(a,"a");
                 printf("HERE1 bin %d\n",current->nb);
                 if (current->bin[bin_size - i -1] == '0')
                 {
                     printf("HERE1bis\n");
-                        afficherListe_bin(a); 
-                        afficherListe_bin(b);
-                         afficherListe2(a); 
+                        afficherListe_bin(a,"a"); 
+                        afficherListe_bin(b,"b");
+                         afficherListe2(a,"a"); 
                         write_and_operation (a, b, "ra");
-                         afficherListe2(a);
-                         afficherListe2(b);
+                         afficherListe2(a,"a");
+                         afficherListe2(b,"b");
                         write_and_operation (a, b, "pb");
-                        afficherListe(a);
-                         afficherListe(b);
-                         afficherListe2(a);
-                         afficherListe2(b);
+                        afficherListe(a,"a");
+                         afficherListe(b,"b");
+                         afficherListe2(a,"a");
+                         afficherListe2(b,"b");
                         num_push ++;
                         //move_to_the_top(a,b,current,pos,30);
-                        afficherListe_bin(a); 
-                        afficherListe_bin(b); 
-                        afficherListe2(a);
+                        afficherListe_bin(a,"a"); 
+                        afficherListe_bin(b,"b"); 
+                        afficherListe2(a,"a");
                         printf("HERE2\n");
                         flag = 0;
                         pos = -1;
@@ -298,7 +298,7 @@ char *sort_radix(t_list_swap *a, int max_bin_size)
                     current = current->up;
                 }  
                 
-          afficherListe_bin(a);
+          afficherListe_bin(a,"a");
                                   printf("HERE2bis\n");  
           pos++;
         }
@@ -307,14 +307,14 @@ char *sort_radix(t_list_swap *a, int max_bin_size)
             {
                 ft_putstr("-----PUSH A*******\n");
                 //while ( num_push !=0)
-                afficherListe_bin(a);
-                afficherListe_bin(b);
+                afficherListe_bin(a,"a");
+                afficherListe_bin(b,"b");
                                         printf("HERE3\n");
                 while (num_push >0)
                 {
                 printf("num_push : %d\n",num_push);                    
-                afficherListe_bin(a);
-                afficherListe_bin(b);
+                afficherListe_bin(a,"a");
+                afficherListe_bin(b,"b");
                     write_and_operation (a, b, "rb");
                     write_and_operation (a, b, "pa");
                     num_push --;
@@ -322,24 +322,24 @@ char *sort_radix(t_list_swap *a, int max_bin_size)
                 }
                 initialisation_bin(&b,0);
                 ft_putstr("-----PUSH A END*******\n");
-                afficherListe_bin(a);
-                afficherListe_bin(b);
+                afficherListe_bin(a,"a");
+                afficherListe_bin(b,"b");
             }
         
 
     ft_putstr("\n\nLoop result i:");
     printf("%d\n",i);
-    afficherListe_bin(a);
+    afficherListe_bin(a,"a");
     //afficherListe_bin(b);
         i++;
     }
 
     ft_putstr("\n\nExit\n");
-    afficherListe_bin(a);
-    afficherListe_bin(b);
+    afficherListe_bin(a,"a");
+    afficherListe_bin(b,"b");
 
-    afficherListe(a);
-    afficherListe(b);
+    afficherListe(a,"a");
+    afficherListe(b,"b");
     return (res);
 }
 
@@ -352,7 +352,7 @@ int move_to_the_top(t_list_swap *a,t_list_swap *b,t_elem_list *current,int pos,i
 
     count = 0;
     //len_list = a->end->pos - a->first->pos;
-    afficherListe(a);
+    afficherListe(a,"a");
     printf("BEFORE pos : %d\n",pos);
     printf("BEFORE nb : %d\n\n",current->nb);
     if (pos <= len_list/2)
@@ -360,19 +360,19 @@ int move_to_the_top(t_list_swap *a,t_list_swap *b,t_elem_list *current,int pos,i
         while (pos <= len_list/2 && pos > 0)
         {
              printf("move2top\n");
-             afficherListe_bin(a);
+             afficherListe_bin(a,"a");
             write_and_operation (a, b, "ra");
             printf("\npos : %d\n\n",pos);
             count++;
             pos --;
         }
-        afficherListe_bin(a);
-        afficherListe_bin(b);
+        afficherListe_bin(a,"a");
+        afficherListe_bin(b,"b");
         write_and_operation (a, b, "pb");
         while (count > 0)
         { 
             printf("move2top\n");
-             afficherListe_bin(a);
+             afficherListe_bin(a,"a");
             write_and_operation (a, b, "rra");
            
             count --;
@@ -383,7 +383,7 @@ int move_to_the_top(t_list_swap *a,t_list_swap *b,t_elem_list *current,int pos,i
         while (pos > len_list/2 && pos > 0)
         {
              printf("move22top\n");
-             afficherListe_bin(a);
+             afficherListe_bin(a,"a");
             write_and_operation (a, b, "rra");
             printf("pos : %d\n", pos);
             count++;
@@ -394,7 +394,7 @@ int move_to_the_top(t_list_swap *a,t_list_swap *b,t_elem_list *current,int pos,i
         while (count > 0)
         {
              printf("move22top\n");
-             afficherListe_bin(a);
+             afficherListe_bin(a,"a");
             write_and_operation (a, b, "ra");
             count --;
         }

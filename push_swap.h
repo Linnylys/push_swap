@@ -79,7 +79,7 @@ struct Liste
 
 int check_list(int argc, char **list);
 int isnumber(char *list);
-int afficherListe(t_list_swap *liste);
+int afficherListe(t_list_swap *liste, char *str);
 t_list_swap *affect_list(char **str, int len);
 int initialisation(t_list_swap **liste,int first_nb);
 int initialisation2(t_list_swap **liste,int first_nb1,int first_nb2);
@@ -109,9 +109,9 @@ char	*convert_bin(int nb);
 char	*convert_bin_updated(char *bin, int max_digit);
 char    *write_and_operation (t_list_swap *a, t_list_swap *b, char *str);
 int 	initialisation_bis(t_list_swap **pliste,int first_nb);
-int afficherListe_bin(t_list_swap *liste);
+int afficherListe_bin(t_list_swap *liste, char *str);
 char *sort_radix(t_list_swap *a, int max_bin_size);
 int insert_bin(t_list_swap *liste, int nb, char *bin);
-int afficherListe2(t_list_swap *liste);
+int afficherListe2(t_list_swap *liste, char *str);
 
 #endif
