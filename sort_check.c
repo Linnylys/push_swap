@@ -268,12 +268,12 @@ char *sort_radix(t_list_swap *a, int max_bin_size)
                 {
                     printf("------------------------\n");
                     printf("If the studied digit is 0\n");
-                        afficherListe_bin(a,"a"); 
-                        afficherListe_bin(b,"b");
-                         afficherListe2(a,"a");printf("\n"); 
+                        afficherListe_bin(a,"a "); 
+                        afficherListe_bin(b,"b ");
+                         afficherListe2(a,"a - go up");printf("\n"); 
                         write_and_operation (a, b, "ra");
-                         afficherListe2(a,"a");
-                         afficherListe2(b,"b");printf("\n");
+                         afficherListe2(a,"a ");
+                         afficherListe2(b,"b ");printf("\n");
                         write_and_operation (a, b, "pb");
                         afficherListe(a,"a");
                          afficherListe(b,"b");

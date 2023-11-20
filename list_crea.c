@@ -300,7 +300,7 @@ int afficherListe(t_list_swap *liste, char *str)
         return (0);
 
     t_elem_list *current;
-    printf("List %s :",str);
+    printf("List to end %s :",str);
     current = liste->first;
     while (current != NULL)
     {
@@ -320,7 +320,7 @@ int afficherListe2(t_list_swap *liste, char *str)
       {  
     if (liste == NULL)
         return (0);
-    printf("List %s :",str);
+    printf("List to first %s :",str);
     t_elem_list *current;
     
     current = liste->end;
@@ -344,7 +344,7 @@ int afficherListe_bin(t_list_swap *liste, char *str)
         return (0);
 
     t_elem_list *current;
-    printf("List %s :",str);
+    printf("List to end %s :",str);
     current = liste->first;
     while (current != NULL)
     {
