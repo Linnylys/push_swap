@@ -39,7 +39,7 @@ void push_a(t_list_swap *a, t_list_swap *b)
 
         insert_bin(a,b->first->nb,b->first->bin);
         tmp = b->first->down;
-        printf("study %s\n",tmp);
+        printf("In push_a function %s\n",tmp);
 
             free(b->first);
             b->first = tmp;
@@ -130,7 +130,7 @@ void rot_rr(t_list_swap *a, t_list_swap *b)
 char    *write_and_operation (t_list_swap *a, t_list_swap *b, char *str)
 {
     char    *res;
-     printf("yeah!! %s\n",str);
+     printf("In write_and_operation function  %s\n",str);
     if (ft_strcmp(str,"sa") == 0)
     {
         swap_a(a,b);
